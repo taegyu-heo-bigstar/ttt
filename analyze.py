@@ -1,3 +1,4 @@
+# %%
 import os
 import re
 import matplotlib.pyplot as plt
@@ -119,4 +120,7 @@ else:
         ax2.legend()
 
         plt.tight_layout()
-        plt.show()
+        #plt.show()
+        plt.savefig('my_plot.png') 
+        print("그래프가 my_plot.png로 저장되었습니다.")
+# %%
