@@ -1,0 +1,151 @@
+ push_decl_level pop_decl_level push_binding_level pop_binding_level global_bindings_p keep_next_level kept_level_p declare_parm_level declare_implicit_exception have_exceptions_p declare_uninstantiated_type_level uninstantiated_type_level_p declare_pseudo_global_level pseudo_global_level_p pushlevel pushlevel_temporary poplevel delete_block insert_block add_block_current_level set_block pushlevel_class poplevel_class print_binding_level print_other_binding_stack print_binding_stack push_to_top_level pop_from_top_level set_identifier_type_value set_identifier_local_value set_nested_typename pushtag make_anon_name clear_anon_tags decls_match duplicate_decls adjust_type_value pushdecl pushdecl_top_level push_overloaded_decl_top_level pushdecl_class_level overloaded_globals_p push_overloaded_decl implicitly_declare redeclaration_error_message lookup_label shadow_label define_label define_case_label getdecls gettags storedecls storetags lookup_tag set_current_level_tags_transparency lookup_tag_reverse typedecl_for_tag globalize_nested_type maybe_globalize_type lookup_nested_type lookup_name lookup_name_current_level sigsegv record_builtin_type output_builtin_tdesc_entries push_overloaded_decl_1 init_decl_processingsim-cache: SimpleScalar/Alpha Tool Set version 3.0 of August, 2003.
+Copyright (c) 1994-2003 by Todd M. Austin, Ph.D. and SimpleScalar, LLC.
+All Rights Reserved. This version of SimpleScalar is licensed for academic
+non-commercial use.  No portion of this work may be used by any commercial
+entity, or for any commercial purpose, without the prior written permission
+of SimpleScalar, LLC (info@simplescalar.com).
+
+warning: section `.comment' ignored...
+sim: command line: ./sim-cache -redir:sim ../../test_results/gcc_s32_a256.txt -max:inst 1000000000 -cache:dl1 dl1:32:32:256:l -cache:il1 il1:32:32:256:l -cache:dl2 dl2:1024:32:4:l -cache:il2 il2:1024:32:4:l ../benchmark/gcc/gcc00.peak.ev6 ../benchmark/gcc/cp-decl.i -o cp.decl.s 
+
+sim: simulation started @ Fri Dec 12 09:21:59 2025, options follow:
+
+sim-cache: This simulator implements a functional cache simulator.  Cache
+statistics are generated for a user-selected cache and TLB configuration,
+which may include up to two levels of instruction and data cache (with any
+levels unified), and one level of instruction and data TLBs.  No timing
+information is generated.
+
+# -config                     # load configuration from a file
+# -dumpconfig                 # dump configuration to a file
+# -h                    false # print help message    
+# -v                    false # verbose operation     
+# -d                    false # enable debug message  
+# -i                    false # start in Dlite debugger
+-seed                       1 # random number generator seed (0 for timer seed)
+# -q                    false # initialize and terminate immediately
+# -chkpt               <null> # restore EIO trace execution from <fname>
+# -redir:sim     ../../test_results/gcc_s32_a256.txt # redirect simulator output to file (non-interactive only)
+# -redir:prog          <null> # redirect simulated program output to file
+-nice                       0 # simulator scheduling priority
+-max:inst          1000000000 # maximum number of inst's to execute
+-cache:dl1       dl1:32:32:256:l # l1 data cache config, i.e., {<config>|none}
+-cache:dl2       dl2:1024:32:4:l # l2 data cache config, i.e., {<config>|none}
+-cache:il1       il1:32:32:256:l # l1 inst cache config, i.e., {<config>|dl1|dl2|none}
+-cache:il2       il2:1024:32:4:l # l2 instruction cache config, i.e., {<config>|dl2|none}
+-tlb:itlb        itlb:16:4096:4:l # instruction TLB config, i.e., {<config>|none}
+-tlb:dtlb        dtlb:32:4096:4:l # data TLB config, i.e., {<config>|none}
+-flush                  false # flush caches on system calls
+-cache:icompress        false # convert 64-bit inst addresses to 32-bit inst equivalents
+# -pcstat              <null> # profile stat(s) against text addr's (mult uses ok)
+
+  The cache config parameter <config> has the following format:
+
+    <name>:<nsets>:<bsize>:<assoc>:<repl>
+
+    <name>   - name of the cache being defined
+    <nsets>  - number of sets in the cache
+    <bsize>  - block size of the cache
+    <assoc>  - associativity of the cache
+    <repl>   - block replacement strategy, 'l'-LRU, 'f'-FIFO, 'r'-random
+
+    Examples:   -cache:dl1 dl1:4096:32:1:l
+                -dtlb dtlb:128:4096:32:r
+
+  Cache levels can be unified by pointing a level of the instruction cache
+  hierarchy at the data cache hiearchy using the "dl1" and "dl2" cache
+  configuration arguments.  Most sensible combinations are supported, e.g.,
+
+    A unified l2 cache (il2 is pointed at dl2):
+      -cache:il1 il1:128:64:1:l -cache:il2 dl2
+      -cache:dl1 dl1:256:32:1:l -cache:dl2 ul2:1024:64:2:l
+
+    Or, a fully unified cache hierarchy (il1 pointed at dl1):
+      -cache:il1 dl1
+      -cache:dl1 ul1:256:32:1:l -cache:dl2 ul2:1024:64:2:l
+
+
+
+sim: ** starting functional simulation w/ caches **
+warning: partially supported sigaction() call...
+
+sim: ** simulation statistics **
+sim_num_insn             1000000000 # total number of instructions executed
+sim_num_refs              461479363 # total number of loads and stores executed
+sim_elapsed_time                 51 # total simulation time in seconds
+sim_inst_rate          19607843.1373 # simulation speed (in insts/sec)
+il1.accesses             1000000000 # total number of accesses
+il1.hits                  999400997 # total number of hits
+il1.misses                   599003 # total number of misses
+il1.replacements             590811 # total number of replacements
+il1.writebacks                    0 # total number of writebacks
+il1.invalidations                 0 # total number of invalidations
+il1.miss_rate                0.0006 # miss rate (i.e., misses/ref)
+il1.repl_rate                0.0006 # replacement rate (i.e., repls/ref)
+il1.wb_rate                  0.0000 # writeback rate (i.e., wrbks/ref)
+il1.inv_rate                 0.0000 # invalidation rate (i.e., invs/ref)
+il2.accesses                 599003 # total number of accesses
+il2.hits                       6546 # total number of hits
+il2.misses                   592457 # total number of misses
+il2.replacements             588361 # total number of replacements
+il2.writebacks                    0 # total number of writebacks
+il2.invalidations                 0 # total number of invalidations
+il2.miss_rate                0.9891 # miss rate (i.e., misses/ref)
+il2.repl_rate                0.9822 # replacement rate (i.e., repls/ref)
+il2.wb_rate                  0.0000 # writeback rate (i.e., wrbks/ref)
+il2.inv_rate                 0.0000 # invalidation rate (i.e., invs/ref)
+dl1.accesses              462159977 # total number of accesses
+dl1.hits                  460274059 # total number of hits
+dl1.misses                  1885918 # total number of misses
+dl1.replacements            1877726 # total number of replacements
+dl1.writebacks               631595 # total number of writebacks
+dl1.invalidations                 0 # total number of invalidations
+dl1.miss_rate                0.0041 # miss rate (i.e., misses/ref)
+dl1.repl_rate                0.0041 # replacement rate (i.e., repls/ref)
+dl1.wb_rate                  0.0014 # writeback rate (i.e., wrbks/ref)
+dl1.inv_rate                 0.0000 # invalidation rate (i.e., invs/ref)
+dl2.accesses                2517513 # total number of accesses
+dl2.hits                     140335 # total number of hits
+dl2.misses                  2377178 # total number of misses
+dl2.replacements            2373082 # total number of replacements
+dl2.writebacks               625802 # total number of writebacks
+dl2.invalidations                 0 # total number of invalidations
+dl2.miss_rate                0.9443 # miss rate (i.e., misses/ref)
+dl2.repl_rate                0.9426 # replacement rate (i.e., repls/ref)
+dl2.wb_rate                  0.2486 # writeback rate (i.e., wrbks/ref)
+dl2.inv_rate                 0.0000 # invalidation rate (i.e., invs/ref)
+itlb.accesses            1000000000 # total number of accesses
+itlb.hits                 999825161 # total number of hits
+itlb.misses                  174839 # total number of misses
+itlb.replacements            174775 # total number of replacements
+itlb.writebacks                   0 # total number of writebacks
+itlb.invalidations                0 # total number of invalidations
+itlb.miss_rate               0.0002 # miss rate (i.e., misses/ref)
+itlb.repl_rate               0.0002 # replacement rate (i.e., repls/ref)
+itlb.wb_rate                 0.0000 # writeback rate (i.e., wrbks/ref)
+itlb.inv_rate                0.0000 # invalidation rate (i.e., invs/ref)
+dtlb.accesses             462159977 # total number of accesses
+dtlb.hits                 462013283 # total number of hits
+dtlb.misses                  146694 # total number of misses
+dtlb.replacements            146566 # total number of replacements
+dtlb.writebacks               38625 # total number of writebacks
+dtlb.invalidations                0 # total number of invalidations
+dtlb.miss_rate               0.0003 # miss rate (i.e., misses/ref)
+dtlb.repl_rate               0.0003 # replacement rate (i.e., repls/ref)
+dtlb.wb_rate                 0.0001 # writeback rate (i.e., wrbks/ref)
+dtlb.inv_rate                0.0000 # invalidation rate (i.e., invs/ref)
+ld_text_base           0x0120000000 # program text (code) segment base
+ld_text_size                1990656 # program text (code) size in bytes
+ld_data_base           0x0140000000 # program initialized data segment base
+ld_data_size                 306320 # program init'ed `.data' and uninit'ed `.bss' size in bytes
+ld_stack_base          0x011ff9b000 # program stack segment base (highest address in stack)
+ld_stack_size                 16384 # program initial stack size
+ld_prog_entry          0x012002e530 # program entry point (initial PC)
+ld_environ_base        0x011ff97000 # program environment base address address
+ld_target_big_endian              0 # target executable endian-ness, non-zero if big endian
+mem.page_count                 1197 # total number of pages allocated
+mem.page_mem                  9576k # total size of memory pages allocated
+mem.ptab_misses             1717867 # total first level page table misses
+mem.ptab_accesses        2928610124 # total page table accesses
+mem.ptab_miss_rate           0.0006 # first level page table miss rate
+
