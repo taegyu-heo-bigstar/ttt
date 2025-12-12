@@ -120,7 +120,10 @@ else:
         ax2.legend()
 
         plt.tight_layout()
-        #plt.show()
+        output_filename = f'{benchmark}_result.png'
+        plt.savefig(output_filename)
+        print(f"Saved graph to {output_filename}")
+        plt.close(fig)
         plt.savefig('my_plot.png') 
         print("그래프가 my_plot.png로 저장되었습니다.")
 # %%
